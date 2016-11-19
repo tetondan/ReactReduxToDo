@@ -1,25 +1,22 @@
 {
-  "name": "srva",
+  "name": "ReactReduxToDo",
   "version": "1.0.0",
-  "description": "Custom survey and form builder",
+  "description": "ToDo app built using react and redux",
   "main": "index.js",
   "scripts": {
     "build": "webpack-dev-server --content-base client/dist/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tetondan/srv-a.git"
+    "url": "git+https://github.com/tetondan/reactreduxtodo.git"
   },
   "author": "Daniel Frehner",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tetondan/srv-a/issues"
+    "url": "https://github.com/tetondan/reactreduxtodo/issues"
   },
-  "homepage": "https://github.com/tetondan/srv-a#readme",
+  "homepage": "https://github.com/tetondan/reactreduxtodo#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "pg": "^6.1.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.6",
@@ -32,9 +29,6 @@
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.25.0",
     "eslint": "^3.10.2",
-    "npm-run-all": "^3.1.1",
-    "opt-cli": "^1.5.1",
-    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-config-utils": "^2.1.0",
