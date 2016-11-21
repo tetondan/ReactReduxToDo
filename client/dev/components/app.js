@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+const selectedButtonStyle = {
+  background: "#b3e5d1",
+  textDecoration: "none",
+  cursor: "default"
+};
+
 export default class App extends Component {
   constructor(props){
     super(props);
@@ -75,9 +81,9 @@ export default class App extends Component {
           })}
         </ul>
         <div className="buttonGroup">
-          <button onClick={this.changeSelected.bind(this, 'All')}>All</button> 
-          <button onClick={this.changeSelected.bind(this, 'Not')}>Not Completed</button> 
-          <button onClick={this.changeSelected.bind(this, 'Completed')}>Completed</button>
+          <button onClick={this.changeSelected.bind(this, 'All')} style={this.state.selected === 'All' ? selectedButtonStyle : null}>All</button> 
+          <button onClick={this.changeSelected.bind(this, 'Not')} style={this.state.selected === 'Not' ? selectedButtonStyle : null}>Not Completed</button> 
+          <button onClick={this.changeSelected.bind(this, 'Completed')} style={this.state.selected === 'Completed' ? selectedButtonStyle : null}>Completed</button>
         </div>
       </div>
     );
