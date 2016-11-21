@@ -47,35 +47,38 @@ export default class App extends Component {
 
   render() {
     return ( 
-      <div>
-        <h1>ToDo List.</h1>
-        <input type="text" value={this.state.input} onChange={this.valueChange}/>
-        <button onClick={this.buttonClick}>Add ToDo</button>
-        <ul>
+      <div className="container">
+        <h1>To Do List</h1>
+        <input type="text" value={this.state.input} onChange={this.valueChange} placeholder="Write to do here"/>
+        <button onClick={this.buttonClick}>Add To Do</button>
+        <ul className="listitems">
           {this.state.items.map( (item, index) => {
             if(this.state.selected === 'All'){
               if(item.completed){
-                return <li key={index} onClick={this.toggleItem.bind(this, index)} style={{color: "red"}}>{item.title}</li>
+                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index} style={{textDecoration: "line-through"}}>{item.title}</li></div>
               } else {
-                return <li key={index} onClick={this.toggleItem.bind(this, index)}>{item.title}</li>
+                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index}>{item.title}</li></div>
               }
             } else if(this.state.selected === "Completed"){
               if(item.completed){
-                return <li key={index} onClick={this.toggleItem.bind(this, index)}>{item.title}</li>
+                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index}>{item.title}</li></div>
               } else {
                 return 
               }
             } else if (this.state.selected === 'Not') {
               if(!item.completed){
-                return <li key={index} onClick={this.toggleItem.bind(this, index)}>{item.title}</li>
+                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index}>{item.title}</li></div>
               } else {
                 return 
               }
             }
           })}
         </ul>
-        <div>{this.state.selected === "All" ? <p style={{color: "red"}}>*completed in red</p> : ''}</div>
-        <a href="#" onClick={this.changeSelected.bind(this, 'All')}>All</a> , <a href="#" onClick={this.changeSelected.bind(this, 'Not')}>Not Completed</a> , <a href="#" onClick={this.changeSelected.bind(this, 'Completed')}>Completed</a>
+        <div className="buttonGroup">
+          <button onClick={this.changeSelected.bind(this, 'All')}>All</button> 
+          <button onClick={this.changeSelected.bind(this, 'Not')}>Not Completed</button> 
+          <button onClick={this.changeSelected.bind(this, 'Completed')}>Completed</button>
+        </div>
       </div>
     );
   }
