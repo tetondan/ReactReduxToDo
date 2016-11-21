@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ListItems from './listItems'
 
 const selectedButtonStyle = {
   background: "#b3e5d1",
@@ -57,29 +58,7 @@ export default class App extends Component {
         <h1>To Do List</h1>
         <input type="text" value={this.state.input} onChange={this.valueChange} placeholder="Write to do here"/>
         <button onClick={this.buttonClick}>Add To Do</button>
-        <ul className="listitems">
-          {this.state.items.map( (item, index) => {
-            if(this.state.selected === 'All'){
-              if(item.completed){
-                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index} style={{textDecoration: "line-through"}}>{item.title}</li></div>
-              } else {
-                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index}>{item.title}</li></div>
-              }
-            } else if(this.state.selected === "Completed"){
-              if(item.completed){
-                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index}>{item.title}</li></div>
-              } else {
-                return 
-              }
-            } else if (this.state.selected === 'Not') {
-              if(!item.completed){
-                return <div className="item" onClick={this.toggleItem.bind(this, index)}><li key={index}>{item.title}</li></div>
-              } else {
-                return 
-              }
-            }
-          })}
-        </ul>
+        <ListItems items={this.state.items} selected={this.state.selected} itemClick={this.toggleItem}/>
         <div className="buttonGroup">
           <button onClick={this.changeSelected.bind(this, 'All')} style={this.state.selected === 'All' ? selectedButtonStyle : null}>All</button> 
           <button onClick={this.changeSelected.bind(this, 'Not')} style={this.state.selected === 'Not' ? selectedButtonStyle : null}>Not Completed</button> 
