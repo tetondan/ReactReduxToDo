@@ -19,7 +19,7 @@ export default class ListItems extends Component {
       if(this.props.item.completed){
         node = <div className="item" onClick={this.props.itemClick.bind(this, index)}><li>{item.title}</li></div>
       }
-    } else if (this.props.selected === 'Not') {
+    } else if (this.props.selected === 'Not Completed') {
       if(!this.props.item.completed){
         node = <div className="item" onClick={this.props.itemClick.bind(this, index)}><li>{item.title}</li></div>
       }

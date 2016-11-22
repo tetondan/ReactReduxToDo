@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import ListItems from './listItems'
-
-const selectedButtonStyle = {
-  background: "#b3e5d1",
-  textDecoration: "none",
-  cursor: "default"
-};
+import ListItems from './listItems';
+import ButtonGroup from './buttonGroup';
+import Button from './button';
 
 export default class App extends Component {
   constructor(props){
@@ -16,7 +12,7 @@ export default class App extends Component {
       selected: "All"
     }
     this.valueChange = this.valueChange.bind(this);
-    this.buttonClick = this.buttonClick.bind(this);
+    this.addTodo = this.addTodo.bind(this);
     this.toggleItem = this.toggleItem.bind(this);
     this.changeSelected = this.changeSelected.bind(this);
   }
@@ -25,7 +21,7 @@ export default class App extends Component {
     this.setState({input: e.target.value});
   }
 
-  buttonClick(){
+  addTodo(){
     if(this.state.input.length > 0){
       this.setState( prevState => {
         return{
@@ -57,13 +53,9 @@ export default class App extends Component {
       <div className="container">
         <h1>To Do List</h1>
         <input type="text" value={this.state.input} onChange={this.valueChange} placeholder="Write to do here"/>
-        <button onClick={this.buttonClick}>Add To Do</button>
+        <Button clickHandler={this.addTodo} title={"Add To Do"} />
         <ListItems items={this.state.items} selected={this.state.selected} itemClick={this.toggleItem}/>
-        <div className="buttonGroup">
-          <button onClick={this.changeSelected.bind(this, 'All')} style={this.state.selected === 'All' ? selectedButtonStyle : null}>All</button> 
-          <button onClick={this.changeSelected.bind(this, 'Not')} style={this.state.selected === 'Not' ? selectedButtonStyle : null}>Not Completed</button> 
-          <button onClick={this.changeSelected.bind(this, 'Completed')} style={this.state.selected === 'Completed' ? selectedButtonStyle : null}>Completed</button>
-        </div>
+        <ButtonGroup clickHandler={this.changeSelected} selected={this.state.selected} buttonTypes={['All', 'Not Completed', 'Completed']}/>
       </div>
     );
   }
