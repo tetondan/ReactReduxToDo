@@ -19,7 +19,7 @@ export default class App extends Component {
 
     return ( 
       <div className="container">
-        <h1>To Do List</h1>
+        <h1>To Do List:</h1>
         <input type="text" ref={(node) => {this.input = node}}/>
         <button onClick={addTodo}>Add To Do</button>
         <ListItems />
