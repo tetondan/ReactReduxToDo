@@ -6,7 +6,6 @@ export default class ListItems extends Component {
   }
 
   render() {
-
     const selectedButtonStyle = {
       background: "#b3e5d1",
       textDecoration: "none",
