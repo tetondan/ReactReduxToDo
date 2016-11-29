@@ -1,37 +1,34 @@
 import React, { Component } from 'react';
-import ListItem from './listItem'
-export default class ListItems extends Component {
-  constructor(props){
-    super(props)
-  }
-  componentDidMount() {
-    const {store} = this.context;
-    this.unsubscribe = store.subscribe(() => {
-      this.forceUpdate()
-    });
-  }
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-  
+import { connect } from 'react-redux';
+import ListItem from './listItem';
+
+class ListItems extends Component {  
   render(){
-    const {store} = this.context
-    let state = store.getState()
-
-    const toggleAction = (id) => {
-      store.dispatch({type: "TOGGLE_TODO", id: id})
-    };
-
+    let props = this.props
     return (
       <ul className="listitems">
-        {state.items.map( (item, index) => {
-          return <ListItem itemClick={toggleAction} selected={state.selected} item={item} key={item.id}/>
+        {props.items.map( (item, index) => {
+          return <ListItem itemClick={props.toggleAction} selected={props.selected} item={item} key={item.id}/>
         })}
       </ul>
     )
   }
-
-}
-ListItems.contextTypes = {
-  store: React.PropTypes.object
 };
+
+const mapStateToProps = state => {
+  return {
+    items: state.items,
+    selected: state.selected
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleAction: id => {
+      dispatch({type: "TOGGLE_TODO", id})
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListItems);
+

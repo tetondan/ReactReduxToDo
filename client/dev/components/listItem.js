@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const ListItem = (props) => {
+const ListItem = props => {
     const item = props.item;
     switch( props.selected ){
       case 'All' : 
@@ -13,7 +13,7 @@ const ListItem = (props) => {
         return !item.completed ? <div className="item" onClick={props.itemClick.bind(this, item.id)}><li>{item.title}</li></div> : null;
       default :
         return null;
-    }
+    };
 };
 
-export default ListItem
+export default ListItem;

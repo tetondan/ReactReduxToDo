@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ListItems from './listItems';
 import ButtonGroup from './buttonGroup';
 
-export default class App extends Component {
-  constructor(props){
-    super(props);
-  }
+let id = 0,input = '';
 
+class App extends Component {
   render() {
-    const { store } = this.context;
-    let id = 0
-
-    const addTodo = () => {
-      if(this.input.value === ''){ return }
-      store.dispatch({type: "ADD_TODO", id: id++, title: this.input.value})
-      this.input.value = ''
-    }
-
     return ( 
       <div className="container">
-        <h1>To Do List:</h1>
-        <input type="text" ref={(node) => {this.input = node}}/>
-        <button onClick={addTodo}>Add To Do</button>
+        <h1>To Do List</h1>
+        <input type="text" ref={(node) => { input = node }}/>
+        <button onClick={this.props.addTodo}>Add To Do</button>
         <ListItems />
         <ButtonGroup />
       </div>
@@ -29,6 +19,15 @@ export default class App extends Component {
   }
 }
 
-App.contextTypes = {
-  store: React.PropTypes.object
-};
+const mapDispatchToProps = dispatch => {
+  return {  
+    addTodo: () => {
+        if(input.value === ''){ return }
+        dispatch({type: "ADD_TODO", id: id++, title: input.value})
+        input.value = ''
+    }
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(App);
