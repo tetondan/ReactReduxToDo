@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 
-export default class ListItems extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
+const Button = (props) => {
     const selectedButtonStyle = {
       background: "#b3e5d1",
       textDecoration: "none",
       cursor: "default"
     };
-    var node;
-    if(this.props.type) {
-      node = <button onClick={this.props.clickHandler.bind(this, this.props.type)} style={this.props.selected === this.props.type ? selectedButtonStyle : null}>{this.props.type}</button> 
+
+    if(props.type) {
+      return <button onClick={props.clickHandler.bind(this, props.type)} style={props.selected === props.type ? selectedButtonStyle : null}>{props.type}</button>;
     } else {
-      node = <button onClick={this.props.clickHandler}>{this.props.title}</button>
+      return <button onClick={props.clickHandler}>{props.title}</button>;
     } 
-    return node
-  }
-}
+};
+
+export default Button;
